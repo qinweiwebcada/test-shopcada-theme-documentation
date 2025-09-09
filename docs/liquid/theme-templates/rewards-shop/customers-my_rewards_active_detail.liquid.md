@@ -8,7 +8,7 @@ A details page of redeemed reward that is active, it includes reward title, desc
 
 ## Layout
 
-<figure><img src="../../../assets/images/documents/image (14).png" alt=""><figcaption><p><em>Active Reward Details Page</em></p></figcaption></figure>
+![Active Reward Details](<../../../assets/images/documents/image (14).png>)
 
 ## Available Liquid Variables
 

@@ -8,7 +8,7 @@ A reward details page which includes detailed information of reward such as titl
 
 ## Layout
 
-<figure><img src="../../assets/images/documents/image (4).png" alt=""><figcaption><p><em>Reward Details Page</em></p></figcaption></figure>
+![Reward Details Page](<../../assets/images/documents/image (4).png>)
 
 ## Available Liquid Variables
 

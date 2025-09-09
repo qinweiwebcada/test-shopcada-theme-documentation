@@ -8,7 +8,7 @@ A details page of redeemed reward that is inactive, it includes reward title, de
 
 ## Layout
 
-<figure><img src="../../../assets/images/documents/image (20).png" alt=""><figcaption><p><em>Inactive Reward Details Page</em></p></figcaption></figure>
+![Inactive Reward Details Page](<../../../assets/images/documents/image (20).png>)
 
 ## Available Liquid Variables
 

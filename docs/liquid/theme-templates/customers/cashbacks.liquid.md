@@ -8,7 +8,7 @@ cashbacks.liquid renders a list of cashbacks information in table form.
 
 ## Layout
 
-<figure><img src="../../../assets/images/documents/layout_cashbacks.jpg" alt=""><figcaption><p>Cash Backs</p></figcaption></figure>
+![Cashbacks](<../../../assets/images/documents/layout_cashbacks.jpg>)
 
 ## Available Liquid Variables
 

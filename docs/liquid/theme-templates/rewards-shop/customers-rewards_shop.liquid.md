@@ -8,7 +8,7 @@ A page contains points summary and list of published rewards.
 
 ## Layout
 
-<figure><img src="../../../assets/images/documents/image (22).png" alt=""><figcaption><p><em>Rewards Shop Page</em></p></figcaption></figure>
+![Rewards Shop Page](<../../../assets/images/documents/image (22).png>)
 
 ## Available Liquid Variables
 

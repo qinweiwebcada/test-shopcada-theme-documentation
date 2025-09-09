@@ -8,7 +8,7 @@ A page contains points summary and redeemed rewards (active or inactive).
 
 ## Layout
 
-<figure><img src="../../../assets/images/documents/image (23).png" alt=""><figcaption><p><em>My Rewards Page</em></p></figcaption></figure>
+![My Rewards Page](<../../../assets/images/documents/image (23).png>)
 
 ## Available Liquid Variables
 
