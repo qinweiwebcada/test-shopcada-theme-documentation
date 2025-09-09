@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="icon" href="assets/images/general/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="description" content="Description">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+	<link rel="stylesheet" href="assets/styles/general.css">
+</head>
+
+<body>
+	<div id="app"></div>
+	<script>
+		window.$docsify = {
+			name: '<span><img src="assets/images/general/shopcada-logo.png" alt="Shopcada Theme" width="25"></span> Shopcada Theme',
+			repo: '',
+			themeColor: '#5BBCC9',
+			executeScript: true,
+			loadSidebar: true,
+			auto2top: true,
+			alias: {
+				'/.*/_sidebar.md': '/_sidebar.md'
+			},
+			search: {
+				maxAge: 86400000,
+				paths: 'auto',
+				placeholder: 'Search ...',
+				noData: 'No results'
+			},
+			plugins: [
+				// Date output plugin
+				// Example: {{ date-output-example created_at }}
+				function dateOutputPlugin(hook, vm) {
+					hook.beforeEach(function (content) {
+						const today = new Date();
+						const options = { day: '2-digit', month: 'long', year: 'numeric' };
+						const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(today);
+
+						return content.replace(/\{\{\s*date-output-example\s+([a-zA-Z0-9_]+)\s*\}\}/g, (_, varName) => {
+							return `
+								<div class="hint hint-info">
+									<div>Format the date by applying a <a href="/#/liquid/filters/date-filter">date filter</a>.</div>
+									<div>&nbsp;</div>
+									<div>{{ ${varName} | date: "%d %B %Y" }}</div>
+									<div>&nbsp;</div>
+									<div>Output => ${formattedDate}</div>
+								</div>
+							`.trimStart();
+						});
+					});
+				},
+
+				// Hint block plugin
+				// Info, Warning, Danger, Success
+				// Example: 
+				// {% hint style="info" %}
+				// Content
+				// {% endhint %}
+				function hintBlockPlugin(hook, vm) {
+					hook.beforeEach(function (html) {
+						return html.replace(
+							/\{%\s*hint(?:\s+style="(info|warning|danger|success)")?\s*%\}([\s\S]*?)\{%\s*endhint\s*%\}/g,
+							(_, style, content) => {
+								const styleClass = style || 'info'; // default to 'info' if not specified
+								return `<div class="hint hint-${styleClass}">${marked.parseInline(content.trim())}</div>`;
+							}
+						);
+					});
+				},
+
+				// Highlight the active sidebar item when the URL contains a hash
+				function sidebarActivePlugin(hook, vm) {
+					hook.doneEach(function (html) {
+						highlightActiveSidebarItem();
+
+						window.addEventListener('hashchange', highlightActiveSidebarItem);
+					});
+
+					function highlightActiveSidebarItem() {
+						const hash = window.location.hash.split('?')[0];
+
+						document.querySelectorAll('.sidebar-nav li.active').forEach(li => {
+							li.classList.remove('active');
+						});
+
+						const links = document.querySelectorAll('.sidebar-nav a');
+						links.forEach(link => {
+							if (link.getAttribute('href') === hash) {
+								const li = link.closest('li');
+								if (li) {
+									li.classList.add('active');
+								}
+							}
+						});
+
+						const sidebar = document.querySelector('.sidebar');
+						const activeLink = sidebar?.querySelector('li.active > a');
+						if (sidebar && activeLink) {
+							scrollIntoViewIfNeeded(activeLink);
+						}
+					}
+
+					function scrollIntoViewIfNeeded(element) {
+						const screenHeight = window.innerHeight;
+						const elementRect = element.getBoundingClientRect();
+
+						const isOutOfView =
+							elementRect.top < 0 ||
+							elementRect.top > screenHeight;
+
+						if (isOutOfView) {
+							element.scrollIntoView({
+								behavior: 'smooth',
+								block: 'center',
+								inline: 'nearest'
+							});
+						}
+					}
+				}
+			]
+		}
+		
+	</script>
+
+	<!-- Docsify v4 -->
+	<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+
+	<!-- Docsify search plugin -->
+	<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+
+	<!-- Docsify external script plugin -->
+	<!-- To load the external script -->
+	<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/external-script.min.js"></script>
+
+</body>
+
+</html>
